@@ -7,6 +7,8 @@
 
 package com.levelrin.alchemicaldefence;
 
+import spark.Spark;
+
 /**
  * Entrypoint of the software.
  * It has the main method.
@@ -19,7 +21,7 @@ public final class Main {
      * @param args Command line arguments.
      */
     public static void main(final String... args) {
-        // todo: implement server side code.
+        Spark.get("/yoi", (request, response) -> "Yoi Yoi");
     }
 
 }
