@@ -16,6 +16,9 @@ kotlin {
     js {
         browser {
             binaries.executable()
+            distribution {
+                directory = file("${projectDir.parentFile.toPath()}/backend/src/main/resources/public")
+            }
             webpackTask {
                 cssSupport.enabled = true
             }

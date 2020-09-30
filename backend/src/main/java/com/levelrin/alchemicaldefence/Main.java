@@ -21,6 +21,7 @@ public final class Main {
      * @param args Command line arguments.
      */
     public static void main(final String... args) {
+        Spark.staticFileLocation("/public");
         Spark.get("/yoi", (request, response) -> "Yoi Yoi");
     }
 

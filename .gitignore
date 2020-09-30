@@ -9,3 +9,8 @@ build/
 
 .idea/*
 out/*
+
+frontend/.gradle/
+backend/src/main/resources/public/frontend.js
+backend/src/main/resources/public/frontend.js.map
+backend/src/main/resources/public/index.html
