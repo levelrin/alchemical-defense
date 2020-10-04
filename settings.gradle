@@ -1,2 +1,2 @@
-rootProject.name = 'AlchemicalDefence'
+rootProject.name = 'AlchemicalDefense'
 include 'frontend', 'backend'

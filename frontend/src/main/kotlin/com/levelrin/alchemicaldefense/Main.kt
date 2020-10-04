@@ -4,3 +4,14 @@
  * This file has been created under the terms of the MIT License.
  * See the details at https://github.com/levelrin/AlchemicalDefense/blob/master/LICENSE
  */
+
+package com.levelrin.alchemicaldefense
+
+import kotlinx.browser.window
+
+/**
+ * Main function.
+ */
+fun main() {
+    window.alert("Yoi Yoi")
+}

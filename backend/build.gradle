@@ -12,7 +12,7 @@ version '0.1.0'
 
 sourceCompatibility = 1.12
 
-mainClassName = 'com.levelrin.alchemicaldefence.Main'
+mainClassName = 'com.levelrin.alchemicaldefense.Main'
 
 repositories {
     mavenCentral()
