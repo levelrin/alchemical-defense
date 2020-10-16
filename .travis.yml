@@ -1,0 +1,13 @@
+services:
+  - docker
+
+script:
+  - docker run --privileged --name ci -it -d levelrin/alchemicaldefense:init /bin/bash
+  - docker cp . ci:/usr/src/myapp
+  - docker exec -u 0 ci chown -R ci: /usr/src/myapp
+  - docker exec -it ci gradle build
+  - docker stop ci
+  - docker rm ci
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
