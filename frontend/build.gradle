@@ -35,16 +35,30 @@ kotlin {
 }
 
 detekt {
-    failFast = true // fail build on any finding
-    //buildUponDefaultConfig = true // preconfigure defaults
+    ignoreFailures = false
     config = files("$projectDir/config/detekt.yml")
-    reports {
-        html.enabled = true // observe findings in your browser with structure and code snippets
-        xml.enabled = true // checkstyle like format mainly for integrations like Jenkins
-        txt.enabled = true // similar to the console output, contains issue signature to manually edit baseline files
-    }
     input = objects.fileCollection().from(
         "src/main/kotlin",
         "src/test/kotlin"
     )
+}
+
+tasks.named("detekt").configure {
+    reports {
+        // Enable/Disable XML report (default: true)
+        xml.required.set(true)
+        xml.outputLocation.set(file("build/reports/detekt.xml"))
+
+        // Enable/Disable HTML report (default: true)
+        html.required.set(true)
+        html.outputLocation.set(file("build/reports/detekt.html"))
+
+        // Enable/Disable TXT report (default: true)
+        txt.required.set(true)
+        txt.outputLocation.set(file("build/reports/detekt.txt"))
+
+        // Enable/Disable SARIF report (default: false)
+        sarif.required.set(true)
+        sarif.outputLocation.set(file("build/reports/detekt.sarif"))
+    }
 }

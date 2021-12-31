@@ -12,6 +12,6 @@ import kotlinx.browser.window
 /**
  * Main function.
  */
-fun main() {
+internal fun main() {
     window.alert("Yoi Yoi")
 }

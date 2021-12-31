@@ -10,8 +10,14 @@ package com.levelrin.alchemicaldefense
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class YoiTest {
+/**
+ * Tests for [Yoi].
+ */
+internal class YoiTest {
 
+    /**
+     * Test for [Yoi.num].
+     */
     @Test
     fun thingsShouldWork() {
         assertEquals(1, Yoi().num())
