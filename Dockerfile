@@ -1,15 +1,14 @@
-FROM openjdk:8
+FROM openjdk:17.0.1-slim-bullseye
 
 # Install Google Chrome
-RUN apt-get update && \
-    apt-get install -y curl unzip xvfb libxi6 libgconf-2-4 && \
-    curl -sS -o - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
-    echo "deb [arch=amd64]  http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list && \
-    apt-get -y update && \
-    apt-get -y install google-chrome-stable
+RUN apt update && \
+    apt install -y curl unzip && \
+    curl -L -o /tmp/google-chrome-stable_current_amd64.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb && \
+    apt install -y --fix-broken /tmp/google-chrome-stable_current_amd64.deb && \
+    rm /tmp/google-chrome-stable_current_amd64.deb
 
 # Install Gradle
-ENV GRADLE_VERSION=6.6.1
+ENV GRADLE_VERSION=7.3.3
 ENV GRADLE_HOME=/usr/local/gradle-${GRADLE_VERSION}
 ENV PATH="$PATH:$GRADLE_HOME/bin"
 WORKDIR /usr/local
