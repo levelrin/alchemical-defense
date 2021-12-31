@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'jacoco'
-    id 'com.github.spotbugs' version '4.5.0'
+    id 'com.github.spotbugs' version '5.0.3'
     id 'pmd'
     id 'checkstyle'
     id 'application'
@@ -10,7 +10,7 @@ plugins {
 group 'com.levelrin'
 version '0.1.0'
 
-sourceCompatibility = 1.8
+sourceCompatibility = 1.17
 
 mainClassName = 'com.levelrin.alchemicaldefense.Main'
 
@@ -19,13 +19,11 @@ repositories {
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.6.2'
-    testCompile 'org.hamcrest:hamcrest:2.2'
-    compile 'net.jcip:jcip-annotations:1.0'
-    compile 'com.github.spotbugs:spotbugs-annotations:4.0.6'
-    compile group: 'com.sparkjava', name: 'spark-core', version: '2.9.2'
-    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.30'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+    testImplementation 'org.hamcrest:hamcrest:2.2'
+    implementation group: 'com.sparkjava', name: 'spark-core', version: '2.9.2'
+    implementation group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.30'
 }
 
 test {
@@ -103,15 +101,15 @@ check.dependsOn jacocoTestCoverageVerification
 check.dependsOn jacocoTestReport
 
 spotbugs {
-    toolVersion = '4.1.2'
+    toolVersion = '4.5.2'
     ignoreFailures = false
     effort = 'max'
 }
 spotbugsMain {
     reports {
         html {
-            enabled = true
-            destination = file("$buildDir/reports/spotbugs/main/spotbugs.html")
+            required = true
+            outputLocation = file("$buildDir/reports/spotbugs/main/spotbugs.html")
             stylesheet = 'fancy-hist.xsl'
         }
     }
@@ -119,8 +117,8 @@ spotbugsMain {
 spotbugsTest {
     reports {
         html {
-            enabled = true
-            destination = file("$buildDir/reports/spotbugs/test/spotbugs.html")
+            required = true
+            outputLocation = file("$buildDir/reports/spotbugs/test/spotbugs.html")
             stylesheet = 'fancy-hist.xsl'
         }
     }
