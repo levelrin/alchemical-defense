@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/levelrin/alchemical-defense.svg?branch=main)](https://travis-ci.org/levelrin/alchemical-defense)
+[![CircleCI](https://circleci.com/gh/levelrin/alchemical-defense.svg?style=svg)](https://circleci.com/gh/levelrin/alchemical-defense)
 [![Test Coverage](https://img.shields.io/codecov/c/github/levelrin/alchemical-defense.svg)](https://codecov.io/github/levelrin/alchemical-defense?branch=main)
 [![](https://tokei.rs/b1/github/levelrin/alchemical-defense?category=code)](https://github.com/levelrin/alchemical-defense)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/levelrin/alchemical-defense/blob/main/LICENSE)
