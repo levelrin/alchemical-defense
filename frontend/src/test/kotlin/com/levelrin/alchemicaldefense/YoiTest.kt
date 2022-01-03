@@ -13,7 +13,7 @@ import kotlin.test.assertEquals
 /**
  * Tests for [Yoi].
  */
-internal class YoiTest {
+class YoiTest {
 
     /**
      * Test for [Yoi.num].

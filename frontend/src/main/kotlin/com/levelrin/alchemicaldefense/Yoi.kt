@@ -11,7 +11,7 @@ package com.levelrin.alchemicaldefense
  * It's for checking if the project is configured correctly.
  * We write sample test case for this class.
  */
-internal class Yoi {
+class Yoi {
 
     /**
      * For testing.
