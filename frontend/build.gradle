@@ -5,10 +5,14 @@ plugins {
 
 repositories {
     mavenCentral()
+    maven {
+        url 'https://maven.pkg.jetbrains.space/public/p/kotlinx-html/maven'
+    }
 }
 
 dependencies {
     testImplementation 'org.jetbrains.kotlin:kotlin-test-js'
+    implementation 'org.jetbrains.kotlinx:kotlinx-html-js:0.7.2'
 }
 
 kotlin {
