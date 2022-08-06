@@ -11,6 +11,5 @@ build/
 out/*
 
 frontend/.gradle/
-backend/src/main/resources/public/frontend.js
-backend/src/main/resources/public/frontend.js.map
-backend/src/main/resources/public/index.html
+frontend/kotlin-js-store/
+backend/src/main/resources/public/
