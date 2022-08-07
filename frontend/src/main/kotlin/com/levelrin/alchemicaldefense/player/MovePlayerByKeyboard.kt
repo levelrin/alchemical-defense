@@ -32,10 +32,10 @@ class MovePlayerByKeyboard(private val origin: Player): Player {
                 it as KeyboardEvent
                 val position: PlayerPosition = this.origin.position()
                 when (it.key) {
-                    "ArrowUp" -> position.moveTo(position.x(), position.y() - scale)
-                    "ArrowDown" -> position.moveTo(position.x(), position.y() + scale)
-                    "ArrowLeft" -> position.moveTo(position.x() - scale, position.y())
-                    "ArrowRight" -> position.moveTo(position.x() + scale, position.y())
+                    "w" -> position.moveTo(position.x(), position.y() - scale)
+                    "s" -> position.moveTo(position.x(), position.y() + scale)
+                    "a" -> position.moveTo(position.x() - scale, position.y())
+                    "d" -> position.moveTo(position.x() + scale, position.y())
                 }
             })
             this.eventAdded = true
