@@ -11,9 +11,15 @@ AlchemicalDefense is a defense web game with an alchemical theme.
 
 TBD.
 
-## How to contribute?
+## How to start the game
+
+1. Run `./gradlew :frontend:assemble`
+2. Run `./gradlew :backend:run`
+3. Access `http://localhost:4567` on your browser.
+
+## How to contribute
 
 1. Create a [ticket](https://github.com/levelrin/alchemical-defense/issues).
-1. Run `./gradlew build` and make sure the build is clean.
-1. Modify the code.
-1. Send a [pull request](https://github.com/levelrin/alchemical-defense/pulls).
+2. Run `./gradlew build` and make sure the build is clean.
+3. Modify the code.
+4. Send a [pull request](https://github.com/levelrin/alchemical-defense/pulls).
