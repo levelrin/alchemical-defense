@@ -7,14 +7,13 @@
 
 package com.levelrin.alchemicaldefense.player
 
+import com.levelrin.alchemicaldefense.keyboard.Keyboard
 import com.levelrin.alchemicaldefense.player.position.PlayerPosition
-import kotlinx.browser.document
-import org.w3c.dom.events.KeyboardEvent
 
 /**
  * A decorator to move the player by keyboard.
  */
-class MovePlayerByKeyboard(private val origin: Player): Player {
+class MovePlayerByKeyboard(private val keyboard: Keyboard, private val origin: Player): Player {
 
     /**
      * To avoid duplicated key event registration, we use this flag.
@@ -27,17 +26,22 @@ class MovePlayerByKeyboard(private val origin: Player): Player {
 
     override fun render() {
         if (!this.eventAdded) {
-            document.addEventListener("keydown", {
-                val scale = SCALE
-                it as KeyboardEvent
+            this.keyboard.addKeyPressedEvent("w") {
                 val position: PlayerPosition = this.origin.position()
-                when (it.key) {
-                    "w" -> position.moveTo(position.x(), position.y() - scale)
-                    "s" -> position.moveTo(position.x(), position.y() + scale)
-                    "a" -> position.moveTo(position.x() - scale, position.y())
-                    "d" -> position.moveTo(position.x() + scale, position.y())
-                }
-            })
+                position.moveTo(position.x(), position.y() - SCALE)
+            }
+            this.keyboard.addKeyPressedEvent("s") {
+                val position: PlayerPosition = this.origin.position()
+                position.moveTo(position.x(), position.y() + SCALE)
+            }
+            this.keyboard.addKeyPressedEvent("a") {
+                val position: PlayerPosition = this.origin.position()
+                position.moveTo(position.x() - SCALE, position.y())
+            }
+            this.keyboard.addKeyPressedEvent("d") {
+                val position: PlayerPosition = this.origin.position()
+                position.moveTo(position.x() + SCALE, position.y())
+            }
             this.eventAdded = true
         }
         this.origin.render()

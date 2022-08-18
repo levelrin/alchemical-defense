@@ -10,6 +10,8 @@ package com.levelrin.alchemicaldefense
 import com.levelrin.alchemicaldefense.blocks.BaseBlocks
 import com.levelrin.alchemicaldefense.blocks.Blocks
 import com.levelrin.alchemicaldefense.blocks.block.Grass
+import com.levelrin.alchemicaldefense.keyboard.BaseKeyboard
+import com.levelrin.alchemicaldefense.keyboard.Keyboard
 import com.levelrin.alchemicaldefense.player.BasePlayer
 import com.levelrin.alchemicaldefense.player.MovePlayerByKeyboard
 import com.levelrin.alchemicaldefense.player.Player
@@ -22,7 +24,9 @@ import kotlinx.browser.window
  */
 fun main() {
     window.onload = {
+        val keyboard: Keyboard = BaseKeyboard()
         val player: Player = MovePlayerByKeyboard(
+            keyboard,
             UpdatePlayerSysStat(
                 BasePlayer(
                     BasePlayerPosition(INIT_X, INIT_Y)
@@ -39,6 +43,7 @@ fun main() {
         })
         player.render()
         blocks.render()
+        keyboard.listen()
     }
 }
 
