@@ -10,6 +10,9 @@ package com.levelrin.alchemicaldefense
 import com.levelrin.alchemicaldefense.blocks.BaseBlocks
 import com.levelrin.alchemicaldefense.blocks.Blocks
 import com.levelrin.alchemicaldefense.blocks.block.Grass
+import com.levelrin.alchemicaldefense.inventory.BaseInventory
+import com.levelrin.alchemicaldefense.inventory.Inventory
+import com.levelrin.alchemicaldefense.inventory.InventoryByKeyboard
 import com.levelrin.alchemicaldefense.keyboard.BaseKeyboard
 import com.levelrin.alchemicaldefense.keyboard.Keyboard
 import com.levelrin.alchemicaldefense.player.BasePlayer
@@ -25,6 +28,11 @@ import kotlinx.browser.window
 fun main() {
     window.onload = {
         val keyboard: Keyboard = BaseKeyboard()
+        val baseInventory: Inventory = BaseInventory()
+        val keyboardInventory: Inventory = InventoryByKeyboard(
+            keyboard,
+            baseInventory
+        )
         val player: Player = MovePlayerByKeyboard(
             keyboard,
             UpdatePlayerSysStat(
@@ -40,7 +48,12 @@ fun main() {
         window.addEventListener("resize", {
             player.render()
             blocks.render()
+            if (baseInventory.isDisplayed()) {
+                baseInventory.hide()
+                baseInventory.render()
+            }
         })
+        keyboardInventory.render()
         player.render()
         blocks.render()
         keyboard.listen()

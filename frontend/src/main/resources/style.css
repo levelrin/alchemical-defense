@@ -21,9 +21,19 @@ body {
     z-index: 1;
 }
 
+#inventory {
+    /* Make the div size fits to its content */
+    display: inline-block;
+    position: absolute;
+    border-width: thin;
+    border-color: black;
+    background-color: wheat;
+    z-index: 2;
+}
+
 #system-status {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 3;
 }
