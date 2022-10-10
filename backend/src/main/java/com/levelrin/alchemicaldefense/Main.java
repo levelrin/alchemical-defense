@@ -7,6 +7,8 @@
 
 package com.levelrin.alchemicaldefense;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import spark.Spark;
 
 /**
@@ -17,12 +19,18 @@ import spark.Spark;
 public final class Main {
 
     /**
+     * For logging.
+     */
+    private static final Logger LOG = LoggerFactory.getLogger(Main.class);
+
+    /**
      * Main method.
      * @param args Command line arguments.
      */
     public static void main(final String... args) {
         Spark.staticFileLocation("/public");
         Spark.get("/yoi", (request, response) -> "Yoi Yoi");
+        LOG.info("Server is ready!");
     }
 
 }
