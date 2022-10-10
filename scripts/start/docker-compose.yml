@@ -1,0 +1,10 @@
+version: "3.8"
+services:
+  alchemical_defense_start:
+    build: .
+    volumes:
+      - "../..:/usr/share/project"
+    ports:
+      - "4567:4567"
+    working_dir: /usr/share/project
+    command: bash -c "gradle :frontend:assemble && gradle :backend:run"
