@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  alchemical_defense_ci:
+    build: .
+    container_name: ci
+    privileged: true
+    volumes:
+      - "../..:/usr/share/project"
+    working_dir: /usr/share/project
+    command: >
+      sh -c "gradle clean &&
+             cp -R /usr/share/project /usr/local &&
+             cd /usr/local/project &&
+             gradle build &&
+             cp -R /usr/local/project/backend/build /usr/share/project/backend/build"
