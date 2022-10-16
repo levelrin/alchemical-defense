@@ -14,38 +14,34 @@ import com.levelrin.alchemicaldefense.player.position.PlayerPosition
 /**
  * A decorator to move the player by keyboard.
  */
-class MovePlayerByKeyboard(private val keyboard: Keyboard, private val origin: Player): Player {
+class MovePlayerByKeyboard(private val player: Player, private val origin: Keyboard): Keyboard {
 
-    /**
-     * To avoid duplicated key event registration, we use this flag.
-     */
-    private var eventAdded: Boolean = false
-
-    override fun position(): PlayerPosition {
-        return this.origin.position()
+    override fun addKeyPressedEvent(key: Key, event: () -> Unit) {
+        this.origin.addKeyPressedEvent(key, event)
     }
 
-    override fun render() {
-        if (!this.eventAdded) {
-            this.keyboard.addKeyPressedEvent(Key.W) {
-                val position: PlayerPosition = this.origin.position()
-                position.moveTo(position.x(), position.y() - SCALE)
-            }
-            this.keyboard.addKeyPressedEvent(Key.S) {
-                val position: PlayerPosition = this.origin.position()
-                position.moveTo(position.x(), position.y() + SCALE)
-            }
-            this.keyboard.addKeyPressedEvent(Key.A) {
-                val position: PlayerPosition = this.origin.position()
-                position.moveTo(position.x() - SCALE, position.y())
-            }
-            this.keyboard.addKeyPressedEvent(Key.D) {
-                val position: PlayerPosition = this.origin.position()
-                position.moveTo(position.x() + SCALE, position.y())
-            }
-            this.eventAdded = true
+    override fun listen() {
+        this.origin.addKeyPressedEvent(Key.W) {
+            val position: PlayerPosition = this.player.position()
+            position.moveTo(position.x(), position.y() - SCALE)
+            this.player.render()
         }
-        this.origin.render()
+        this.origin.addKeyPressedEvent(Key.S) {
+            val position: PlayerPosition = this.player.position()
+            position.moveTo(position.x(), position.y() + SCALE)
+            this.player.render()
+        }
+        this.origin.addKeyPressedEvent(Key.A) {
+            val position: PlayerPosition = this.player.position()
+            position.moveTo(position.x() - SCALE, position.y())
+            this.player.render()
+        }
+        this.origin.addKeyPressedEvent(Key.D) {
+            val position: PlayerPosition = this.player.position()
+            position.moveTo(position.x() + SCALE, position.y())
+            this.player.render()
+        }
+        this.origin.listen()
     }
 
     companion object {

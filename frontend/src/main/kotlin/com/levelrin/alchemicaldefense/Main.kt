@@ -27,33 +27,29 @@ import kotlinx.browser.window
  */
 fun main() {
     window.onload = {
-        val keyboard: Keyboard = BaseKeyboard()
-        val baseInventory: Inventory = BaseInventory()
-        val keyboardInventory: Inventory = InventoryByKeyboard(
-            keyboard,
-            baseInventory
-        )
-        val player: Player = MovePlayerByKeyboard(
-            keyboard,
-            UpdatePlayerSysStat(
-                BasePlayer(
-                    BasePlayerPosition(INIT_X, INIT_Y)
-                )
+        val inventory: Inventory = BaseInventory()
+        val player: Player = UpdatePlayerSysStat(
+            BasePlayer(
+                BasePlayerPosition(INIT_X, INIT_Y)
             )
         )
-        val blocks: Blocks = BaseBlocks(
-            player
+        val keyboard: Keyboard = InventoryByKeyboard(
+            inventory,
+            MovePlayerByKeyboard(
+                player,
+                BaseKeyboard()
+            )
         )
+        val blocks: Blocks = BaseBlocks(player)
         blocks.add(Grass(0, 0))
         window.addEventListener("resize", {
             player.render()
             blocks.render()
-            if (baseInventory.isDisplayed()) {
-                baseInventory.hide()
-                baseInventory.render()
+            if (inventory.isDisplayed()) {
+                inventory.hide()
+                inventory.render()
             }
         })
-        keyboardInventory.render()
         player.render()
         blocks.render()
         keyboard.listen()

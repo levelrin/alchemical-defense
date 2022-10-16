@@ -13,32 +13,21 @@ import com.levelrin.alchemicaldefense.keyboard.Keyboard
 /**
  * A decorator to open or close the inventory by keyboard.
  */
-class InventoryByKeyboard(private val keyboard: Keyboard, private val origin: Inventory): Inventory {
+class InventoryByKeyboard(private val inventory: Inventory, private val origin: Keyboard): Keyboard {
 
-    /**
-     * To avoid duplicated key event registration, we use this flag.
-     */
-    private var eventAdded: Boolean = false
+    override fun addKeyPressedEvent(key: Key, event: () -> Unit) {
+        this.origin.addKeyPressedEvent(key, event)
+    }
 
-    override fun render() {
-        if (!this.eventAdded) {
-            this.keyboard.addKeyPressedEvent(Key.E) {
-                if (this.origin.isDisplayed()) {
-                    this.origin.hide()
-                } else {
-                    this.origin.render()
-                }
+    override fun listen() {
+        this.origin.addKeyPressedEvent(Key.E) {
+            if (this.inventory.isDisplayed()) {
+                this.inventory.hide()
+            } else {
+                this.inventory.render()
             }
-            this.eventAdded = true
         }
-    }
-
-    override fun isDisplayed(): Boolean {
-        return this.origin.isDisplayed()
-    }
-
-    override fun hide() {
-        this.origin.hide()
+        this.origin.listen()
     }
 
 }
