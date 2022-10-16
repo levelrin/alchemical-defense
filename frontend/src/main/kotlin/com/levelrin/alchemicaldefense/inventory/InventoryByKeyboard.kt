@@ -7,6 +7,7 @@
 
 package com.levelrin.alchemicaldefense.inventory
 
+import com.levelrin.alchemicaldefense.keyboard.Key
 import com.levelrin.alchemicaldefense.keyboard.Keyboard
 
 /**
@@ -21,7 +22,7 @@ class InventoryByKeyboard(private val keyboard: Keyboard, private val origin: In
 
     override fun render() {
         if (!this.eventAdded) {
-            this.keyboard.addKeyPressedEvent("e") {
+            this.keyboard.addKeyPressedEvent(Key.E) {
                 if (this.origin.isDisplayed()) {
                     this.origin.hide()
                 } else {

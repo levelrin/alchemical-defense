@@ -7,8 +7,6 @@
 
 package com.levelrin.alchemicaldefense.keyboard
 
-import org.w3c.dom.events.KeyboardEvent
-
 /**
  * It's responsible for handling keyboard events.
  */
@@ -16,10 +14,10 @@ interface Keyboard {
 
     /**
      * Add an event to be executed when the key is pressed.
-     * @param key The value of [KeyboardEvent.key] for the event.
+     * @param key The key corresponding to the event.
      * @param event It will be executed when the key is pressed.
      */
-    fun addKeyPressedEvent(key: String, event: () -> Unit)
+    fun addKeyPressedEvent(key: Key, event: () -> Unit)
 
     /**
      * Start to listen to the keyboard input.

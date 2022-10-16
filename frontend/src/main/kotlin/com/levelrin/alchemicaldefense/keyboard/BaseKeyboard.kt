@@ -19,9 +19,9 @@ class BaseKeyboard: Keyboard {
      * Map of key-pressed events.
      * The key-value pair is the same as [Keyboard.addKeyPressedEvent].
      */
-    private val keyPressedEvent: MutableMap<String, () -> Unit> = mutableMapOf()
+    private val keyPressedEvent: MutableMap<Key, () -> Unit> = mutableMapOf()
 
-    override fun addKeyPressedEvent(key: String, event: () -> Unit) {
+    override fun addKeyPressedEvent(key: Key, event: () -> Unit) {
         this.keyPressedEvent[key] = event
     }
 
@@ -29,7 +29,7 @@ class BaseKeyboard: Keyboard {
         document.addEventListener("keydown", { keyEvent ->
             keyEvent as KeyboardEvent
             this.keyPressedEvent.forEach {
-                if (keyEvent.key == it.key) {
+                if (keyEvent.key == it.key.toString()) {
                     it.value()
                 }
             }

@@ -7,6 +7,7 @@
 
 package com.levelrin.alchemicaldefense.player
 
+import com.levelrin.alchemicaldefense.keyboard.Key
 import com.levelrin.alchemicaldefense.keyboard.Keyboard
 import com.levelrin.alchemicaldefense.player.position.PlayerPosition
 
@@ -26,19 +27,19 @@ class MovePlayerByKeyboard(private val keyboard: Keyboard, private val origin: P
 
     override fun render() {
         if (!this.eventAdded) {
-            this.keyboard.addKeyPressedEvent("w") {
+            this.keyboard.addKeyPressedEvent(Key.W) {
                 val position: PlayerPosition = this.origin.position()
                 position.moveTo(position.x(), position.y() - SCALE)
             }
-            this.keyboard.addKeyPressedEvent("s") {
+            this.keyboard.addKeyPressedEvent(Key.S) {
                 val position: PlayerPosition = this.origin.position()
                 position.moveTo(position.x(), position.y() + SCALE)
             }
-            this.keyboard.addKeyPressedEvent("a") {
+            this.keyboard.addKeyPressedEvent(Key.A) {
                 val position: PlayerPosition = this.origin.position()
                 position.moveTo(position.x() - SCALE, position.y())
             }
-            this.keyboard.addKeyPressedEvent("d") {
+            this.keyboard.addKeyPressedEvent(Key.D) {
                 val position: PlayerPosition = this.origin.position()
                 position.moveTo(position.x() + SCALE, position.y())
             }
