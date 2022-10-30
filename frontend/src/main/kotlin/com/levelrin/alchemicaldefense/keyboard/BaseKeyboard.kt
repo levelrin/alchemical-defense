@@ -21,14 +21,32 @@ class BaseKeyboard: Keyboard {
      */
     private val keyPressedEvent: MutableMap<Key, () -> Unit> = mutableMapOf()
 
+    /**
+     * Map of key-released events.
+     * The key-value pair is the same as [Keyboard.addKeyReleasedEvent].
+     */
+    private val keyReleasedEvent: MutableMap<Key, () -> Unit> = mutableMapOf()
+
     override fun addKeyPressedEvent(key: Key, event: () -> Unit) {
         this.keyPressedEvent[key] = event
+    }
+
+    override fun addKeyReleasedEvent(key: Key, event: () -> Unit) {
+        this.keyReleasedEvent[key] = event
     }
 
     override fun listen() {
         document.addEventListener("keydown", { keyEvent ->
             keyEvent as KeyboardEvent
             this.keyPressedEvent.forEach {
+                if (keyEvent.key == it.key.toString()) {
+                    it.value()
+                }
+            }
+        })
+        document.addEventListener("keyup", { keyEvent ->
+            keyEvent as KeyboardEvent
+            this.keyReleasedEvent.forEach {
                 if (keyEvent.key == it.key.toString()) {
                     it.value()
                 }

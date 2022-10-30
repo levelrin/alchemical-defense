@@ -20,6 +20,13 @@ interface Keyboard {
     fun addKeyPressedEvent(key: Key, event: () -> Unit)
 
     /**
+     * Add an event to be executed when the key is released.
+     * @param key The key corresponding to the event.
+     * @param event It will be executed when the key is released.
+     */
+    fun addKeyReleasedEvent(key: Key, event: () -> Unit)
+
+    /**
      * Start to listen to the keyboard input.
      */
     fun listen()

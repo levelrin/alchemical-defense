@@ -19,6 +19,10 @@ class InventoryByKeyboard(private val inventory: Inventory, private val origin: 
         this.origin.addKeyPressedEvent(key, event)
     }
 
+    override fun addKeyReleasedEvent(key: Key, event: () -> Unit) {
+        this.origin.addKeyReleasedEvent(key, event)
+    }
+
     override fun listen() {
         this.origin.addKeyPressedEvent(Key.E) {
             if (this.inventory.isDisplayed()) {
